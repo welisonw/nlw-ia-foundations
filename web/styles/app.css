@@ -1,0 +1,14 @@
+
+#app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#app img {
+  width: 4rem;
+}
+
+#app h1 {
+  color: #995dff;
+}
