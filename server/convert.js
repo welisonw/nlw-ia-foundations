@@ -1,15 +1,14 @@
 
 import fs, { readFileSync } from 'node:fs';
 import wav from 'node-wav';
-import ffmpeg from 'fluent-ffmpeg';
+import ffmpeg from "fluent-ffmpeg";
 import ffmpegStatic from 'ffmpeg-static';
-import { kMaxLength } from 'node:buffer';
 
 const filePath = './tmp/audio.mp4';
 const outputPath = filePath.replace('.mp4', '.wav');
 
 export const convert = () => new Promise((resolve, reject) => {
-  console.log('convertendo')
+  console.log('Convertendo o vídeo...')
 
   ffmpeg.setFfmpegPath(ffmpegStatic);
 
@@ -25,7 +24,7 @@ export const convert = () => new Promise((resolve, reject) => {
       const audioData = fileDecoded.channelData[0];
       const floatArray = new Float32Array(audioData);
 
-      console.log('vídeo convertido com sucesso!');
+      console.log('Vídeo convertido com sucesso!');
 
       resolve(floatArray);
 
@@ -36,6 +35,4 @@ export const convert = () => new Promise((resolve, reject) => {
       reject(error);
     })
     .save(outputPath)
-
-
 });

@@ -18,11 +18,11 @@ async function handleSubmitForm(e) {
   const [ _, params ] = videoURL.split('/shorts/');
   const [ videoId ] = params.split('?si')
 
-  paragraphContent.textContent = 'Obtendo o texto do áudio...';
+  paragraphContent.textContent = 'Obtendo o texto do áudio... Por favor, aguarde.';
 
   const transcription = await server.get(`/summary/${videoId}`);
 
-  paragraphContent.textContent = 'Realizando o resumo...';
+  paragraphContent.textContent = 'Realizando o resumo... Aguarde mais um instante.';
 
   const summary = await server.post('/summary', {
     text: transcription.data.result,
@@ -30,7 +30,6 @@ async function handleSubmitForm(e) {
 
   paragraphContent.textContent = summary.data.result;
   paragraphContent.classList.remove('placeholder');
-
 };
 
 form.addEventListener('submit', handleSubmitForm);
